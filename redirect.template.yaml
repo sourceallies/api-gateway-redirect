@@ -148,7 +148,8 @@ Resources:
       Code:
         ZipFile: >
           exports.handler = (event, context, callback) => {
-              const redirectLocation = process.env.REDIRECT_DOMAIN + event.path;
+              const path = (event.path === '/') ? '/blog' : event.path;
+              const redirectLocation = process.env.REDIRECT_DOMAIN + path;
               console.log('Redirecting from: ', event.headers.Referer || 'https://' +event.headers.Host + event.path, ' to: ', redirectLocation);
               callback(null, {
                 isBase64Encoded: false,
