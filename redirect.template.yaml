@@ -165,7 +165,7 @@ Resources:
         Variables:
           REDIRECT_DOMAIN: !Join [ "", [ !Ref ToProtocol, "://", !Ref ToDomain ] ]
       Description: Redirects all web requests
-      FunctionName: url-redirect
+      FunctionName: blog-url-redirect
       Handler: index.handler
       MemorySize: 128
       Role: !GetAtt Role.Arn
@@ -175,7 +175,7 @@ Resources:
   Role:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: basic-lambda-execution-role
+      RoleName: blog-basic-lambda-execution-role
       ManagedPolicyArns:
         - !Ref BasicLambdaExecutionPolicy
       AssumeRolePolicyDocument:
@@ -193,7 +193,7 @@ Resources:
     Type: AWS::IAM::ManagedPolicy
     Properties:
       Description: Basic Lambda Execution.
-      ManagedPolicyName: basic-lambda-execution-managed-policy
+      ManagedPolicyName: blog-basic-lambda-execution-managed-policy
       PolicyDocument:
         Version: "2012-10-17"
         Statement:
